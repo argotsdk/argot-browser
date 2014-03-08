@@ -1,0 +1,39 @@
+{
+  "name": "argot-browser",
+  "description": "Argot in the browser",
+  "version": "0.1.0",
+  "homepage": "https://github.com/danmidwood/argot-browser",
+  "author": {
+    "name": "Dan Midwood",
+    "email": "dan@danmidwood.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/danmidwood/argot-browser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danmidwood/argot-browser/issues"
+  },
+  "main": "lib/argot",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.2",
+    "tools.repl": ">=0.0.1",
+    "grunt-release-it": "~0.1.1"
+  },
+  "dependencies": {
+    "argot": "0.1",
+    "streamifier": "0.1.0",
+    "browserify-middleware": "^2.3.0"
+  },
+  "keywords": [],
+  "doc": "./doc"
+}
