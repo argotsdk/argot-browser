@@ -1,0 +1,17 @@
+{
+  "name": "argot-browser",
+  "version": "0.1.2",
+  "homepage": "https://github.com/danmidwood/argot-browser",
+  "authors": [
+    "Dan Midwood <dan@danmidwood.com>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "lib",
+    "test",
+    "tests",
+    "Gruntfile.js",
+    "package.json"
+  ]
+}

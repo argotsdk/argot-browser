@@ -34,6 +34,16 @@ module.exports = function(grunt) {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'nodeunit']
       }
+    },
+    browserify: {
+      dist: {
+        files: {
+          'public/argot.js': ['lib/argot.js']
+        },
+        options: {
+          standalone: 'argot'
+        }
+      }
     }
   });
 
@@ -42,8 +52,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-release-it');
+  grunt.loadNpmTasks('grunt-browserify');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('release', ['jshint', 'nodeunit', 'browserify', 'release-it']);
 
 };

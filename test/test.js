@@ -1,6 +1,6 @@
 'use strict';
 
-var argot = require('../lib/argot.js');
+var argot = require('../lib/argot.js')();
 
 /*
   ======== A Handy Little Nodeunit Reference ========
