@@ -4,6 +4,7 @@ var argot = _dereq_('argot');
 var http = _dereq_('http');
 var util = _dereq_('util');
 var stream = _dereq_('stream');
+var streamifier = _dereq_('streamifier');
 
 Buffer._useTypedArrays = false;
 
@@ -18,8 +19,32 @@ ErrorablePassThroughStream.prototype.error = function(message) {
 function Argot() {
 }
 
-Argot.prototype.read = argot.read;
-Argot.prototype.readMessage = argot.readMessage;
+function toStream(data) {
+  var Stream = _dereq_('stream');
+  if (data instanceof Stream && data.read) {
+    return data;
+  }
+  if (data._object instanceof Array) {
+      data = data._object;
+  }
+  if (data instanceof Array) {
+    data = new Buffer(data);
+  }
+  if (data instanceof Buffer) {
+    return streamifier.createReadStream(data);
+  }
+  else {
+    return data; // and pray
+  }
+}
+
+Argot.prototype.read = function(lib,data,type) {
+  return argot.read(lib,toStream(data),type);
+};
+
+Argot.prototype.readMessage = function(data) {
+  return argot.readMessage(toStream(data));
+};
 Argot.prototype.loadDictionary = argot.loadDictionary;
 
 function makeArgot(path) {
@@ -50,7 +75,7 @@ function makeArgot(path) {
 module.exports = makeArgot;
 
 }).call(this,_dereq_("buffer").Buffer)
-},{"argot":3,"argot/lib/StreamMaker.js":2,"buffer":13,"http":17,"stream":28,"util":37}],2:[function(_dereq_,module,exports){
+},{"argot":3,"argot/lib/StreamMaker.js":2,"buffer":13,"http":17,"stream":28,"streamifier":38,"util":37}],2:[function(_dereq_,module,exports){
 function StreamMaker() {
 }
 
@@ -520,7 +545,8 @@ Library.prototype.buildStructures = function(refLibrary) {
   // Should be built in order: names then definitions and then relations
 };
 
-function read(library,type,data) {
+function read(library,data,type) {
+  type = type || library.getNameFromStreamId(data.read(1)[0]);
   var typeDef = library.getTypeDefinition(type);
   var reader = library.getReaderFn(typeDef);
   return reader(data);
@@ -610,7 +636,7 @@ function readMessage(messageStream) {
     })
     .then(function(lib){
       dictionary.readDefinitions(messageStream,lib,lib);
-      return readers.readStructure(messageStream,lib,lib);
+      return [lib,readers.readStructure(messageStream,lib,lib)];
     });
 }
 
