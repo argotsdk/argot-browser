@@ -30,6 +30,9 @@ function toStream(data) {
   if (data instanceof Array) {
     data = new Buffer(data);
   }
+  if (data instanceof Uint8Array) {
+     data = new Buffer(data);
+  }
   if (data instanceof Buffer) {
     return streamifier.createReadStream(data);
   }

@@ -18,7 +18,7 @@ Argot-Browser is available through [Bower](http://bower.io/), add the following 
 
 ```json
 "dependencies": {
-  "argot-browser": "0.1.3"
+  "argot-browser": "0.1.4"
 }
 ```
 
