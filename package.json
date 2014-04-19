@@ -2,17 +2,17 @@
   "name": "argot-browser",
   "description": "Argot in the browser",
   "version": "0.1.3",
-  "homepage": "https://github.com/danmidwood/argot-browser",
+  "homepage": "https://github.com/argotsdk/argot-browser",
   "author": {
     "name": "Dan Midwood",
     "email": "dan@danmidwood.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/danmidwood/argot-browser.git"
+    "url": "git://github.com/argotsdk/argot-browser.git"
   },
   "bugs": {
-    "url": "https://github.com/danmidwood/argot-browser/issues"
+    "url": "https://github.com/argotsdk/argot-browser/issues"
   },
   "main": "lib/argot",
   "engines": {
@@ -36,5 +36,6 @@
     "browserify-middleware": "^2.3.0"
   },
   "keywords": [],
-  "doc": "./doc"
+  "doc": "./doc",
+  "license": "BSD-3"
 }
