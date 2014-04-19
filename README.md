@@ -28,5 +28,25 @@ Argot Browser is an almost drop in replacement for Argot.js that Argot-enables y
 
 See the Argot [README](http://github.com/danmidwood/argot.js) for detailed usage information and the [Java demo](https://github.com/argotsdk/argot-java-demo) and [Node demo](https://github.com/argotsdk/argot-demo) for examples.
 
+## Development
+
+### Release
+
+This project is currently quite a hassle to release, to do so:
+
+```shell
+rm public/argot.js
+# update version in README
+emacs README.md
+# update version in bower.json
+emacs bower.json
+# regenerate browserify file (for use in bower)
+grunt browserify
+# release!
+grunt release-it
+```
+
+TODO: Streamline this ^
+
 ## License
 Copyright (c) 2014 Live Media Pty Ltd
